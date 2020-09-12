@@ -1,207 +1,40 @@
 @extends($themeName."::layouts.master")
 @section('content')
     <div class="mainlist ui container segment" style="transform: none;">
-
-
         <p></p>
         <div class="speedbar ui  mobile_hidden"><span id="dle-speedbar"><span itemscope=""
                                                                               itemtype="http://data-vocabulary.org/Breadcrumb"><a
                         href="https://forward-drill.com/" itemprop="url"><span itemprop="title">FORWARD GROUP</span></a></span> » <span
                     itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a
-                        href="https://forward-drill.com/news/" itemprop="url"><span
-                            itemprop="title">News</span></a></span></span></div>
+                        href="https://forward-drill.com/forward-in-operation/" itemprop="url"><span itemprop="title">FORWARD in operation</span></a></span></span>
+        </div>
         <p></p>
         <section id="content" class="ui equal width grid" style="transform: none;">
-            <div class="column" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-
-
+            <div class="column"
+                 style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
                 <div class="theiaStickySidebar" style="padding-top: 1px; padding-bottom: 1px; position: static;">
                     <div id="dle-content">
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/227-one-belt-and-one-road.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-08/1566548593_1223.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/227-one-belt-and-one-road.html"
-                                               class="header">“One Belt and One Road"</a>
-                                            <div class="description">FORWARD RX40x160 HDD rig has proved itself
-                                                excellently during the drilling works at one of the construction sites
-                                                on Bali Island (Indonesia)
+                        @foreach($posts as $post)
+                            <article class="shortstory story ui basic segment">
+                                <div class="column">
+                                    <div class="ui items default default segment">
+                                        <div class="item">
+                                            <a href="https://forward-drill.com/forward-in-operation/103-photo-gallery.html"
+                                               class="ui small image"><img
+                                                    src="{{$post->image->path->getUrl()}}"></a>
+                                            <div class="content">
+                                                <a href="{{$post->getUrl()}}"
+                                                   class="header">{{ $post->title }}</a>
+                                                <div class="description">{!! $post->body !!}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/226-forward-in-trenchless-asia-2019-jakarta-indonesia.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-07/thumbs/1563529810_whatsapp-image-2019-07-17-at-12.26.26.jpeg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/226-forward-in-trenchless-asia-2019-jakarta-indonesia.html"
-                                               class="header">FORWARD in TRENCHLESS ASIA 2019, Jakarta, Indonesia</a>
-                                            <div class="description">FORWARD&nbsp;is one of the largest suppliers of HDD
-                                                drilling rigs in this area.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/225-the-most-interesting-exhibitions-in-the-field-of-hdd.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-07/1562078115_forvard-mal.png"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/225-the-most-interesting-exhibitions-in-the-field-of-hdd.html"
-                                               class="header">The most interesting exhibitions in the field of HDD</a>
-                                            <div class="description">The most interesting and large-scale exhibitions in
-                                                the field of HDD
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/224-forward-rx40160-hdd-us-220-00000.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-05/1559142921_bez-imeni-8.png"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/224-forward-rx40160-hdd-us-220-00000.html"
-                                               class="header">FORWARD RX40×160 HDD US $220 000.00</a>
-                                            <div class="description">FORWARD RX40×160 HDD rig for sale from FORWARD
-                                                dealer warehouse in Turkey
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/223-forward-rx33120-hdd-in-antalya.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-05/1559199735_aaaa.png"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/223-forward-rx33120-hdd-in-antalya.html"
-                                               class="header">FORWARD RX33×120 HDD in Antalya</a>
-                                            <div class="description">FORWARD RX33×120 HDD rig for sale from FORWARD
-                                                dealer warehouse in Turkey
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/220-crossing-under-the-saigon-river-in-ho-chi-minh-city-vietnam.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2019-01/1548936750_1.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/220-crossing-under-the-saigon-river-in-ho-chi-minh-city-vietnam.html"
-                                               class="header">Crossing under the Saigon River in Ho Chi Minh City,
-                                                Vietnam</a>
-                                            <div class="description">FORWARD GROUP is an international company,
-                                                specializing in designing and producing underground drill rigs, coring
-                                                drill rigs and vertical drilling equipment.&nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/218-merry-christmas-and-happy-new-year.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2018-12/1545826271_short.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/218-merry-christmas-and-happy-new-year.html"
-                                               class="header">Merry Christmas and Happy New Year</a>
-                                            <div class="description">Merry Christmas and Happy New Year!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/219-no-dig-india-show-2018.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2018-12/1545909650_happy.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/219-no-dig-india-show-2018.html"
-                                               class="header">No-dig India Show 2018</a>
-                                            <div class="description">Last weekend FORWARD GROUP Multinational team took
-                                                part in No-dig India Show 2018, in Mumbai.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/217-oil-pipeline-in-tatarstan.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2018-11/1542028588_dsc_0509.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/217-oil-pipeline-in-tatarstan.html"
-                                               class="header">Oil pipeline in Tatarstan</a>
-                                            <div class="description">Description of the object in Tatarstan.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="shortstory story ui basic segment">
-                            <div class="column">
-                                <div class="ui items default default segment">
-                                    <div class="item">
-                                        <a href="https://forward-drill.com/news/213-cm-expo-construction-machinery-exhibition-2018-antalya.html"
-                                           class="ui small image"><img
-                                                src="https://forward-drill.com/uploads/posts/2018-09/1537449135_y6.jpg"></a>
-                                        <div class="content">
-                                            <a href="https://forward-drill.com/news/213-cm-expo-construction-machinery-exhibition-2018-antalya.html"
-                                               class="header">CM-EXPO CONSTRUCTION MACHINERY EXHIBITION 2018,
-                                                Antalya</a>
-                                            <div class="description">At the beginning of September FORWARD GROUP in
-                                                co-operation with HDD MÜHENDİSLİK SONDAJ MAKİNE SAN.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                         <div class="ui pagination menu ignore-select">
-                            <span> « </span>
-                            <span>1</span> <a href="https://forward-drill.com/news/page/2/">2</a> <a
-                                href="https://forward-drill.com/news/page/3/">3</a>
-                            <a href="https://forward-drill.com/news/page/2/"> » </a>
+                            {{$posts->links()}}
                         </div>
                     </div>
                 </div>
@@ -343,7 +176,4 @@
                     </aside>
                 </div>
             </div>
-        </section>
-
-    </div>
 @endsection
