@@ -4,7 +4,7 @@
         <a class="p-2 text-dark" href="#">Features</a>
         <a class="p-2 text-dark" href="#">Enterprise</a>
         <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
+        <a class="p-2 text-dark" href="#">ssss</a>
     </nav>
     @if(can_register())
     <a class="btn btn-outline-primary" href="{{ route('register') }}">Sign up</a>
