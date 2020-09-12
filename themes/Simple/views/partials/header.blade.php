@@ -78,7 +78,7 @@
                 </div>
                 <a class="item" href="/news/"><i class="newspaper layout icon"></i>News</a>
                 <a class="item" href="https://forward-drill.com/forward-in-operation/"><i class="edit icon"></i>FORWARD in Operation</a>
-                <a class="item" href="/index.php?do=feedback"><i class="mail outline icon"></i>Contacts</a>
+                <a class="item" href="/feedback"><i class="mail outline icon"></i>Contacts</a>
                 <div class="item share">
                     <a href="http://www.forward-benelux.lu" rel="external nofollow" target="_blank"><img src="/uploads/Germany-150x150.png" title="Germany" width="28px"/></a>
                     <a href="http://www.forward-benelux.nl" rel="external nofollow" target="_blank"><img src="/uploads/Netherlands-150x150.png" title="Netherlands" width="28px"/></a>

@@ -30277,3 +30277,12 @@ pre .comment:hover {background-color: inherit;box-shadow: none;}
 /*---Смайлы---*/
 .emoji {border: none;vertical-align: middle;width: 22px;height: 22px;}
 
+i.icon.newspaper:before {
+    content: "\f1ea";
+}
+i.icon:before {
+    background: none !important;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
