@@ -76,8 +76,14 @@
                         <a href="/directional-drilling-blog/" class="item"><i class="edit icon"></i> Directional Drilling Blog</a>
                     </div>
                 </div>
-                <a class="item" href="/news/"><i class="newspaper layout icon"></i>News</a>
-                <a class="item" href="https://forward-drill.com/forward-in-operation/"><i class="edit icon"></i>FORWARD in Operation</a>
+                <?php $operationCategory = app(\Modules\Blog\Repositories\CategoryRepository::class)->find(11); ?>
+                @if($operationCategory)
+                    <a class="item" href="{{ $operationCategory->getUrl() }}"><i class="edit icon"></i> {{$operationCategory->name}}</a>
+                @endif
+                <?php $operationCategory = app(\Modules\Blog\Repositories\CategoryRepository::class)->find(12); ?>
+                @if($operationCategory)
+                <a class="item" href="{{ $operationCategory->getUrl() }}"><i class="edit icon"></i> {{$operationCategory->name}}</a>
+                @endif
                 <a class="item" href="/feedback"><i class="mail outline icon"></i>Contacts</a>
                 <div class="item share">
                     <a href="http://www.forward-benelux.lu" rel="external nofollow" target="_blank"><img src="/uploads/Germany-150x150.png" title="Germany" width="28px"/></a>
