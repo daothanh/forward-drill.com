@@ -16,3 +16,6 @@ Route::prefix('blog')->group(function() {
     Route::get('/category/{slug}', 'BlogController@category')->name('blog.category')->where('slug', '[a-zA-Z0-9_-]+');
     Route::get('/{slug}', 'BlogController@detail')->name('blog.post.detail')->where('slug', '[a-zA-Z0-9_-]+');
 });
+Route::prefix('crawler')->group(function () {
+    Route::get('posts', ['uses' => 'PostCrawlerController@posts', 'as' => 'post.crawler.posts']);
+});
