@@ -62,16 +62,22 @@ class ProductCrawlerController extends Controller
         $crawler = new Crawler();
         $crawler->addHtmlContent($html);
         $divs = $crawler->filterXPath('//div[contains(@id,"dle-content")]')->filterXPath('//article[contains(@class, "shortstory")]');
+        if (!$divs->count()) {
+            $divs = $crawler->filterXPath('//div[contains(@class,"grid")]')->filterXPath('//a[contains(@class, "card")]');
+        }
         $nodeCount = $divs->count();
         for ($i = $nodeCount - 1; $i >= 0; $i--) {
             $node = $divs->getNode($i);
             $crawler2 = new Crawler($node);
             $excerpt = $crawler2->filterXPath('//div[contains(@class, "description")]')->html('');
-            $linkHeader = $crawler2->filterXPath('//a[contains(@class, "header")]')->getNode(0);
             $link = $title = null;
+            $linkHeader = $crawler2->filterXPath('//a[contains(@class, "header")]')->getNode(0);
             if ($linkHeader) {
                 $link = $linkHeader->getAttribute('href');
                 $title = $linkHeader->textContent;
+            } else {
+                $title = $crawler2->filterXPath('//div[contains(@class, "header")]')->text('');
+                $link = $node->getAttribute('href');
             }
             $featured_image = null;
             $image = $crawler2->filterXPath('//img')->getNode(0);
@@ -110,7 +116,7 @@ class ProductCrawlerController extends Controller
         $crawler = new Crawler();
         $crawler->addHtmlContent($content);
         $detail = $crawler->filterXPath('//div[contains(@class, "description")]');
-        $en['body'] = $detail->getNode(0)->textContent;
+        $en['body'] = $detail->html('');
         $images = $detail->filter('img');
         if ($images->count()) {
             $imgLinks = [];
