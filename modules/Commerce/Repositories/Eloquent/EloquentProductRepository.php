@@ -28,7 +28,7 @@ class EloquentProductRepository extends EloquentBaseRepository implements \Modul
             $product->colors()->sync($colorIds);
         }
 
-        $product->setTags(Arr::get($data, 'tags'));
+        $product->setTags(Arr::get($data, 'tags', []));
 
         event(new ProductWasCreated($product, $data));
 

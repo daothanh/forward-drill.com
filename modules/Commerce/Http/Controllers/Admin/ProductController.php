@@ -50,7 +50,7 @@ class ProductController extends BaseAdminController
         $this->seo()->setTitle($product->title);
         $this->breadcrumb->addItem(trans('commerce::product.title.Products'), route('admin.commerce.product.index'));
         $this->breadcrumb->addItem($product->title);
-        $categories = $this->categoryRepository->getCategories();
+        $categories = $this->categoryRepository->getCategories(true);
         $colors = Color::query()->orderBy('position', 'asc')->get();
         return $this->view('commerce::admin.product.edit', compact('product', 'categories', 'colors'));
     }

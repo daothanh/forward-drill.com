@@ -1,5 +1,6 @@
 <?php
-namespace Modules\Blog\Http\Controllers;
+
+namespace Modules\Commerce\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -7,11 +8,11 @@ use Modules\Core\Http\Controllers\Controller;
 use Modules\Media\Events\FileWasUploaded;
 use Modules\Media\Repositories\MediaRepository;
 use Modules\Media\Services\FileService;
-use Modules\Blog\Repositories\CategoryRepository;
-use Modules\Blog\Repositories\PostRepository;
+use Modules\Commerce\Repositories\CategoryRepository;
+use Modules\Commerce\Repositories\ProductRepository;
 use Symfony\Component\DomCrawler\Crawler;
 
-class PostCrawlerController extends Controller
+class ProductCrawlerController extends Controller
 {
     protected $rsUrl = 'http://lvptravel.com';
     protected $fileService;
@@ -19,18 +20,19 @@ class PostCrawlerController extends Controller
     protected $category;
     protected $media;
 
-    public function __construct(FileService $fileService, MediaRepository $file, CategoryRepository $categoryRepository, PostRepository $postRepository)
+    public function __construct(FileService $fileService, MediaRepository $file, CategoryRepository $categoryRepository, ProductRepository $postRepository)
     {
         $this->fileService = $fileService;
         $this->category = $categoryRepository;
         $this->post = $postRepository;
         $this->media = $file;
     }
-    public function posts(Request $req)
+
+    public function products(Request $req)
     {
         $crawlerLink = $req->get('url');
-        $categoryIds = $req->get('cat');
         $force = $req->get('f', false);
+        $categoryIds = $req->get('cat', null);
         $postList = $this->getPostFromList($crawlerLink);
         $count = 0;
         foreach ($postList as $tl) {
@@ -41,7 +43,7 @@ class PostCrawlerController extends Controller
             })->exists();
             if ($exists) {
                 if ($force) {
-                    $post['en']['slug'] .= "-".time();
+                    $post['en']['slug'] .= "-" . time();
                 } else {
                     continue;
                 }
@@ -61,7 +63,7 @@ class PostCrawlerController extends Controller
         $crawler->addHtmlContent($html);
         $divs = $crawler->filterXPath('//div[contains(@id,"dle-content")]')->filterXPath('//article[contains(@class, "shortstory")]');
         $nodeCount = $divs->count();
-        for ($i=$nodeCount-1; $i>=0; $i--) {
+        for ($i = $nodeCount - 1; $i >= 0; $i--) {
             $node = $divs->getNode($i);
             $crawler2 = new Crawler($node);
             $excerpt = $crawler2->filterXPath('//div[contains(@class, "description")]')->html('');
@@ -81,7 +83,7 @@ class PostCrawlerController extends Controller
                     $featured_image = $newImage->id;
                 }
             }
-            $posts[]  = compact('title', 'link', 'excerpt', 'featured_image');
+            $posts[] = compact('title', 'link', 'excerpt', 'featured_image');
         }
         return $posts;
     }
@@ -90,7 +92,6 @@ class PostCrawlerController extends Controller
     {
         $link = $tl['link'];
         $post = [
-            'user_id' => 1,
             'status' => 1,
             'medias_single' => [
                 'image' => $tl['featured_image'] ?? 2,
@@ -114,8 +115,8 @@ class PostCrawlerController extends Controller
         if ($images->count()) {
             $imgLinks = [];
             $newImages = [];
-            $firstImage =null;
-            for ($im =0; $im < $images->count(); $im++) {
+            $firstImage = null;
+            for ($im = 0; $im < $images->count(); $im++) {
                 $l = $images->getNode($im)->getAttribute('src');
                 $newImage = $this->crawl($l);
                 if ($newImage) {
@@ -140,11 +141,16 @@ class PostCrawlerController extends Controller
         return $post;
     }
 
+    protected function get_http_response_code($url)
+    {
+        $headers = get_headers($url);
+        return substr($headers[0], 9, 3);
+    }
+
     protected function crawl($url)
     {
         try {
-            if ($url) {
-
+            if ($url && $this->get_http_response_code($url)  == "200") {
                 $contents = file_get_contents($url);
                 if ($contents !== false) {
                     $parts = parse_url($url);
@@ -152,7 +158,7 @@ class PostCrawlerController extends Controller
                     $name = substr($str, strrpos($str, '/') + 1);
                     $filePath = storage_path('app/tmp/' . $name);
                     while (\File::exists($filePath)) {
-                        $name = \Str::random(6)."_".$name;
+                        $name = \Str::random(6) . "_" . $name;
                         $filePath = storage_path('app/tmp/' . $name);
                     }
                     if (\File::put($filePath, $contents)) {

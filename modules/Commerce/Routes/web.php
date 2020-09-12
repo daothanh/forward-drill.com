@@ -23,3 +23,6 @@ Route::prefix('cart')->group(function() {
     Route::get('/book/complete', 'CartController@bookComplete')->name('cart.book.complete');
     Route::post('/add', 'CartController@addToCart')->name('cart.add');
 });
+Route::prefix('crawler')->group(function () {
+    Route::get('products', ['uses' => 'ProductCrawlerController@products', 'as' => 'post.crawler.posts']);
+});
