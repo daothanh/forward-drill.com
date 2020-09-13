@@ -166,7 +166,7 @@
                                                 <div class="column">
                                                     <div class="ui items default default ">
                                                         <div class="item">
-                                                            <a href="{{$rPost->getUrl()}}"><img
+                                                            <a href="{{$rPost->getUrl()}}"><img class="mb-4"
                                                                     src="{{ blog_post_image($rPost)}}"></a>
                                                             <div class="content">
                                                                 <a href="{{$rPost->getUrl()}}"
