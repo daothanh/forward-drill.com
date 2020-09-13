@@ -235,9 +235,10 @@
         <!-- Top Menu -->
             {{--                    <?php $operationCategory = app(\Modules\Blog\Repositories\CategoryRepository::class)->find(12); ?>--}}
             {{--                    @if($operationCategory)--}}
-            {{--                        <a class="item" href="{{ $operationCategory->getUrl() }}"><i--}}
-            {{--                                class="edit icon"></i> {{$operationCategory->name}}</a>--}}
+            {{--
             {{--                    @endif--}}
+            <a class="item" href="/feedback"><i
+                    class="edit icon"></i>Concact</a>
             <div class="item share">
                 <a href="http://www.forward-benelux.lu/" rel="external nofollow" target="_blank"><img
                         src="{{ asset('/images/Germany-150x150.png') }}" title="Germany" width="28px"></a>
