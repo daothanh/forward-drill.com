@@ -14,7 +14,9 @@
 
     <link rel="stylesheet" href="{{ Theme::url('css/main.css') }}?version=1">
     <link rel="stylesheet" href="{{ Theme::url('css/my.css') }}?version=1">
+    <link rel="stylesheet" href="{{ Theme::url('css/default.css') }}?version=1">
     <link rel="stylesheet" href="{{ Theme::url('css/semantic.css') }}?version=1">
+    <link rel="stylesheet" href="{{ Theme::url('css/semantic.css/semantic.min.css') }}?version=1">
     <link rel="stylesheet" href="{{ Theme::url('css/styles.css') }}?version=1">
     <link rel="stylesheet" href="{{ Theme::url('css/engine.css') }}?version=1">
     @stack('css-stack')
@@ -23,8 +25,8 @@
 @include("simple::partials.header")
 <div class="container">
     @yield('content')
-    @include("simple::partials.footer")
 </div>
+@include("simple::partials.footer")
 <script>
     window.Webvi = {
         locale: "{{ locale() }}",
