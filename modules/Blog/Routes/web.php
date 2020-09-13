@@ -18,4 +18,5 @@ Route::prefix('blog')->group(function() {
 });
 Route::prefix('crawler')->group(function () {
     Route::get('posts', ['uses' => 'PostCrawlerController@posts', 'as' => 'post.crawler.posts']);
+    Route::get('post', ['uses' => 'PostCrawlerController@post', 'as' => 'post.crawler.post']);
 });

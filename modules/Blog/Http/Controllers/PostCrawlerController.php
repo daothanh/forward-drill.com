@@ -51,7 +51,14 @@ class PostCrawlerController extends Controller
         }
         echo $count;
     }
-
+    public function post(Request $request) {
+        $this->getPost(['link' => $request->get('url'), 'featured_image' => '']);
+    }
+    protected function get_http_response_code($url)
+    {
+        $headers = get_headers($url);
+        return substr($headers[0], 9, 3);
+    }
     protected function getPostFromList($pageLink)
     {
 
@@ -109,7 +116,7 @@ class PostCrawlerController extends Controller
         $crawler = new Crawler();
         $crawler->addHtmlContent($content);
         $detail = $crawler->filterXPath('//div[contains(@class, "description")]');
-        $en['body'] = $detail->getNode(0)->textContent;
+        $en['body'] = $detail->html('');
         $images = $detail->filter('img');
         if ($images->count()) {
             $imgLinks = [];
@@ -143,7 +150,7 @@ class PostCrawlerController extends Controller
     protected function crawl($url)
     {
         try {
-            if ($url) {
+            if ($url && $this->get_http_response_code($url)  == "200") {
 
                 $contents = file_get_contents($url);
                 if ($contents !== false) {
